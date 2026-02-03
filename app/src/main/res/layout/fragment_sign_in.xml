@@ -93,8 +93,8 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="45dp"
-            android:inputType="textEmailAddress"
-            android:hint="Enter your Email id"
+            android:inputType="textPassword"
+            android:hint="Enter password"
             android:id="@+id/idpassword_box"
             android:background="@drawable/fill_box"
             android:paddingStart="15dp"/>

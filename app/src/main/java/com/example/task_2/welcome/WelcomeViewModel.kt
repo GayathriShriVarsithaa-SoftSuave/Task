@@ -3,23 +3,18 @@ package com.example.task_2.welcome
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.task_2.base.BaseViewModel
 
-class WelcomeViewModel : ViewModel() {
+class WelcomeViewModel : BaseViewModel() {
 
-    private val _navigateToSignIn = MutableLiveData<Boolean>()
-    val navigateToSignIn: LiveData<Boolean> = _navigateToSignIn
 
-    private val _navigateToSignUp = MutableLiveData<Boolean>()
-    val navigateToSignUp: LiveData<Boolean> = _navigateToSignUp
     fun onSignInClicked() {
-        _navigateToSignIn.value = true
+        showmessage("Navigating to Sign In")
+        navigate()
     }
 
     fun onCreateAccountClicked() {
-        _navigateToSignUp.value = true
-    }
-    fun onNavigationDone() {
-        _navigateToSignIn.value = false
-        _navigateToSignUp.value = false
+        showmessage("Navigating to Sign Up")
+        navigate()
     }
 }

@@ -7,59 +7,44 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.task_2.R
+import com.example.task_2.base.BaseFragment
 import com.example.task_2.databinding.FragmentDigitcodeBinding
 import com.example.task_2.listeners.FragmentClickListener
 
-class DigitCodeFragment : Fragment(R.layout.fragment_digitcode), FragmentClickListener {
-
-    private var _binding: FragmentDigitcodeBinding? = null
-    private val binding get() = _binding!!
-
+class DigitCodeFragment : BaseFragment<FragmentDigitcodeBinding>(
+    FragmentDigitcodeBinding::inflate
+){
     private val viewModel: DigitcodeViewModel by viewModels()
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        _binding = FragmentDigitcodeBinding.bind(view)
-
-//        val con = view.findViewById<Button>(R.id.conformbtn)
-//        val can = view.findViewById<Button>(R.id.cancelbtn)
-//        val num1 = view.findViewById<EditText>(R.id.pin1)
-//        val num2 = view.findViewById<EditText>(R.id.pin2)
-//        val num3 = view.findViewById<EditText>(R.id.pin3)
-//        val num4 = view.findViewById<EditText>(R.id.pin4)
-//        val pinerror=view.findViewById<TextView>(R.id.     pinerror)
-//        con.setOnClickListener
+    override fun setupViews() {
         binding.conformbtn.setOnClickListener{
-                onClick(it.id)
+            onClick(it.id)
         }
-//        can.setOnClickListener
         binding.cancelbtn.setOnClickListener{
             onClick(it.id)
         }
-        viewModel.conformStatus.observe(viewLifecycleOwner) { message ->
+    }
+    override fun observeViewModel() {
+        viewModel.msg.observe(viewLifecycleOwner) { message ->
             if(message.equals("missing"))
             {
                 binding.pinerror.visibility= View.VISIBLE
             }
-            else {
+            else if(message.equals("Canceled")){
+                Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+            }
+            else if(message.equals("Submitted successfully"))
+            {
                 Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
             }
         }
-        viewModel.cancelStatus.observe(viewLifecycleOwner) { message ->
-            Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
-        }
-        viewModel.navigateBack.observe(viewLifecycleOwner) { shouldNavigate ->
+
+        viewModel.navi.observe(viewLifecycleOwner) { shouldNavigate ->
             if (shouldNavigate) {
                 findNavController().navigate(R.id.pin_to_welcome)
-                viewModel.next()
-//                parentFragmentManager.beginTransaction()
-//                    .replace(R.id.fragment_container,WelcomeFragment())
-//                    .addToBackStack(null)
-//                    .commit()
+                viewModel.navigationdone()
             }
         }
     }
-
     override fun onClick(viewId: Int) {
         when(viewId){
             R.id.conformbtn->{
@@ -78,9 +63,4 @@ class DigitCodeFragment : Fragment(R.layout.fragment_digitcode), FragmentClickLi
             }
         }
     }
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
-
 }

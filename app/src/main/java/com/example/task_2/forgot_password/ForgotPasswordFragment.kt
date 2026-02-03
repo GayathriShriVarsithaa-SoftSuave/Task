@@ -7,23 +7,26 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.task_2.forgot_password.ForgotPasswordViewModel
 import com.example.task_2.R
+import com.example.task_2.base.BaseFragment
 import com.example.task_2.databinding.FragmentForgotPasswordBinding
 import com.example.task_2.listeners.FragmentClickListener
 
-class ForgotPasswordFragment : Fragment(R.layout.fragment_forgot_password), FragmentClickListener{
-    private var _binding: FragmentForgotPasswordBinding? = null
-    private val binding get() = _binding!!
+class ForgotPasswordFragment : BaseFragment<FragmentForgotPasswordBinding>(
+    FragmentForgotPasswordBinding::inflate
+){
     private val viewModel: ForgotPasswordViewModel by viewModels()
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        _binding = FragmentForgotPasswordBinding.bind(view)
-
-
+    override fun setupViews() {
         binding.continuebtn.setOnClickListener {
             onClick(it.id)
         }
+        binding.back2.setOnClickListener {
+            onClick(it.id)
+        }
+    }
+
+    override fun observeViewModel() {
         viewModel.msg.observe(viewLifecycleOwner) {
-            message ->
+                message ->
             if(message.equals("invalid"))
             {
                 binding.emailLayout.error="Invalid email"
@@ -33,18 +36,13 @@ class ForgotPasswordFragment : Fragment(R.layout.fragment_forgot_password), Frag
                 binding.emailLayout.error="Mail field must be filled"
             }
         }
-        viewModel.navigateNext.observe(viewLifecycleOwner) {
-            shouldNavigate ->
+        viewModel.navi.observe(viewLifecycleOwner) {
+                shouldNavigate ->
             if (shouldNavigate) {
                 findNavController().navigate(R.id.forgotpassword_to_pin)
                 viewModel.next()
             }
         }
-        binding.back2.setOnClickListener {
-           onClick(it.id)
-        }
-
-
     }
 
     override fun onClick(viewId: Int) {
@@ -60,10 +58,4 @@ class ForgotPasswordFragment : Fragment(R.layout.fragment_forgot_password), Frag
             }
         }
     }
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
-
-
 }

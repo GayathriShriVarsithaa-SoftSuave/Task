@@ -10,41 +10,22 @@ import com.example.task_2.R
 import com.example.task_2.databinding.FragmentSignInBinding
 import com.example.task_2.listeners.FragmentClickListener
 import com.example.task_2.sign_in.SignInViewModel
+import com.example.task_2.base.BaseFragment
 
-class SignInFragment : Fragment(R.layout.fragment_sign_in), FragmentClickListener {
-    private var _binding: FragmentSignInBinding? = null
-    private val binding get() = _binding!!
+class SignInFragment : BaseFragment<FragmentSignInBinding>(
+    FragmentSignInBinding::inflate
+){
+    //    private var _binding: FragmentSignInBinding? = null
+//    private val binding get() = _binding!!
     private val viewModel: SignInViewModel by viewModels()
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        _binding = FragmentSignInBinding.bind(view)
-        //val forgot=view.findViewById<Button>(R.id.idforgotpassword)
-        //val signin=view.findViewById<Button>(R.id.idsigninbutton)
-        //val back=view.findViewById<TextView>(R.id.idback)
-        //val maillayout=view.findViewById<TextInputLayout>(R.id.emailLayout)
-        //val passwordlayout=view.findViewById<TextInputLayout>(R.id.passwordLayout)
-        binding.idforgotpassword.setOnClickListener{
-            onClick(it.id)
-
-
-        }
-        viewModel.forgotStatus.observe(viewLifecycleOwner){
-            shouldforgot->
-            if(shouldforgot){
-                findNavController().navigate(R.id.signin_to_forgotpassword)
-                viewModel.onForgotNavigationDone()
-
-//                parentFragmentManager.beginTransaction()
-//                    .replace(R.id.fragment_container,ForgotPasswordFragment())
-//                    .addToBackStack(null)
-//                    .commit()
-            }
-        }
-        binding.idsigninbutton.setOnClickListener{
-            onClick(it.id)
-        }
-        viewModel.signInStatus.observe(viewLifecycleOwner){
-            message->
+    override fun setupViews(){
+        binding.idsigninbutton.setOnClickListener { onClick(it.id)}
+        binding.idforgotpassword.setOnClickListener { onClick(it.id)}
+        binding.idback.setOnClickListener { onClick(it.id)}
+    }
+    override fun observeViewModel(){
+        viewModel.msg.observe(viewLifecycleOwner){
+                message->
             if(message.equals("no email"))
             {
                 binding.emailLayout.error="Mail field must be filled"
@@ -61,15 +42,21 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in), FragmentClickListene
                 Toast.makeText(requireContext(),message, Toast.LENGTH_SHORT).show()
             }
         }
-        binding.idback.setOnClickListener{
-            onClick(it.id)
-            //findNavController().popBackStack()
-            //parentFragmentManager.popBackStack()
+        viewModel.navi.observe(viewLifecycleOwner){
+                shouldnavigate->
+            if(shouldnavigate){
+                findNavController().navigate(R.id.back_to_welcome_from_signin)
+                viewModel.onForgotNavigationDone()
+            }
         }
-
-
+        viewModel.forgotStatus.observe(viewLifecycleOwner){
+                shouldnavigate->
+            if(shouldnavigate){
+                findNavController().navigate(R.id.signin_to_forgotpassword)
+                viewModel.onForgotNavigationDone()
+            }
+        }
     }
-
     override fun onClick(viewId: Int) {
         when(viewId){
             R.id.idback->{
@@ -86,9 +73,5 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in), FragmentClickListene
                 viewModel.forgot()
             }
         }
-    }
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding=null
     }
 }
