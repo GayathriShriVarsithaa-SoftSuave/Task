@@ -51,6 +51,14 @@
         <action
             android:id="@+id/pin_to_welcome"
             app:destination="@id/WelcomeFragment"/>
+        <action
+            android:id="@+id/pin_to_api"
+            app:destination="@id/RestApiDemoFragment"/>
+    </fragment>
+    <fragment
+        android:id="@+id/RestApiDemoFragment"
+        android:name="RestApiDemoFragment">
+
     </fragment>
 
 
