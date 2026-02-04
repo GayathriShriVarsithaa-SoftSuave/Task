@@ -40,7 +40,8 @@ class DigitCodeFragment : BaseFragment<FragmentDigitcodeBinding>(
 
         viewModel.navi.observe(viewLifecycleOwner) { shouldNavigate ->
             if (shouldNavigate) {
-                findNavController().navigate(R.id.pin_to_welcome)
+                findNavController().navigate(R.id.pin_to_api)
+                //findNavController().navigate(R.id.pin_to_welcome)
                 viewModel.navigationdone()
             }
         }
