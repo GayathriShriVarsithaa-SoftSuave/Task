@@ -9,7 +9,6 @@ import com.example.task_2.model.PostRequest
 import com.example.task_2.network.RetrofitInstance
 import kotlinx.coroutines.launch
 
-
 class RestApiDemoFragment : Fragment(R.layout.fragment_rest_api_demo) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
