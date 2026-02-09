@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.task_2.model.Post
 import com.example.task_2.repository.PostRepository
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.Dispatchers
 
 class PostViewModel(
     private val repository: PostRepository
@@ -16,8 +17,14 @@ class PostViewModel(
     val posts: LiveData<List<Post>> = _posts
 
     fun fetchPosts() {
-        viewModelScope.launch {
-            _posts.value = repository.getPosts()
+        viewModelScope.launch(Dispatchers.IO) {
+            val result = repository.getPosts()
+            _posts.postValue(result)
+        }
+    }
+    fun createPost(post: Post){
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.createPost(post)
         }
     }
 }

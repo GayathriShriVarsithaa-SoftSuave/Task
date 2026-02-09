@@ -1,6 +1,7 @@
 package com.example.task_2.digitCode
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -10,6 +11,7 @@ import com.example.task_2.R
 import com.example.task_2.base.BaseFragment
 import com.example.task_2.databinding.FragmentDigitcodeBinding
 import com.example.task_2.listeners.FragmentClickListener
+import kotlin.math.log
 
 class DigitCodeFragment : BaseFragment<FragmentDigitcodeBinding>(
     FragmentDigitcodeBinding::inflate
@@ -20,29 +22,18 @@ class DigitCodeFragment : BaseFragment<FragmentDigitcodeBinding>(
             onClick(it.id)
         }
         binding.cancelbtn.setOnClickListener{
+            Log.d("CANCEL","CANCEL CLICKED")
             onClick(it.id)
         }
     }
     override fun observeViewModel() {
         viewModel.msg.observe(viewLifecycleOwner) { message ->
-            if(message.equals("missing"))
-            {
-                binding.pinerror.visibility= View.VISIBLE
-            }
-            else if(message.equals("Canceled")){
+            if (message.equals("missing")) {
+                binding.pinerror.visibility = View.VISIBLE
+            } else if (message.equals("Canceled")) {
                 Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
-            }
-            else if(message.equals("Submitted successfully"))
-            {
+            } else if (message.equals("Submitted successfully")) {
                 Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
-            }
-        }
-
-        viewModel.navi.observe(viewLifecycleOwner) { shouldNavigate ->
-            if (shouldNavigate) {
-                findNavController().navigate(R.id.pin_to_api)
-                //findNavController().navigate(R.id.pin_to_welcome)
-                viewModel.navigationdone()
             }
         }
     }
@@ -60,7 +51,10 @@ class DigitCodeFragment : BaseFragment<FragmentDigitcodeBinding>(
             }
             R.id.cancelbtn->{
                 binding.pinerror.visibility= View.GONE
-                viewModel.cancel()
+                //findNavController().navigate(R.id.pin_to_welcome)
+                findNavController().navigate(R.id.pin_to_api_action)
+                Log.d("NEXT","NAVIGATED")
+
             }
         }
     }
