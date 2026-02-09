@@ -2,6 +2,9 @@
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
      id("kotlin-kapt")
+     //id("com.google.devtools.ksp") version "2.3.4"
+
+//     ksp
 }
 
 android {
@@ -56,7 +59,8 @@ dependencies {
     implementation("androidx.room:room-ktx:2.6.1")
     annotationProcessor("androidx.room:room-compiler:2.6.1")
 
-    //kapt("androidx.room:room-compiler:2.6.1")
+    kapt("androidx.room:room-compiler:2.6.1")
+    //ksp("androidx.room:room-compiler:2.6.1")
 
 // Fragment KTX (required for by viewModels())
     implementation("androidx.fragment:fragment-ktx:1.8.5")
