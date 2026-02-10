@@ -2,7 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/WelcomeFragment">
+    app:startDestination="@id/EcommerceFragment">
 
 
     <fragment
@@ -51,17 +51,38 @@
         android:id="@+id/DigitcodeFragment"
         android:name="com.example.task_2.digitCode.DigitCodeFragment">
         <action
+            android:id="@+id/conform_to_recyclerfragment"
+            app:destination="@id/RecyclerViewFragment"/>
+        <action
+            android:id="@+id/conform_to_linearlist"
+            app:destination="@id/LinearListFragment"/>
+        <action
             android:id="@+id/pin_to_welcome"
             app:destination="@id/WelcomeFragment"/>
         <action
             android:id="@+id/pin_to_api_action"
             app:destination="@id/RestApiDemoFragment"/>
+        <action
+            android:id="@+id/pin_to_ecomm"
+            app:destination="@id/EcommerceFragment"/>
     </fragment>
     <fragment
         android:id="@+id/RestApiDemoFragment"
         android:name="com.example.task_2.api.RestApiDemoFragment">
 
     </fragment>
+    <fragment
+        android:id="@+id/RecyclerViewFragment"
+        android:name="com.example.task_2.adapter.RecyclerViewFragment">
+    </fragment>
+    <fragment
+        android:id="@+id/LinearListFragment"
+        android:name="com.example.task_2.Linear.LinearListFragment" />
+<fragment
+    android:id="@+id/EcommerceFragment"
+    android:name="com.example.task_2.adapter.EcommerceFragment">
+
+</fragment>
 
 
 </navigation>

@@ -1,0 +1,49 @@
+package com.example.task_2.adapter
+
+import android.os.Bundle
+import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.task_2.R
+import com.example.task_2.adapter.NameAdapter
+
+class RecyclerViewFragment : Fragment(R.layout.fragment_recycler_view) {
+
+
+    private val names = listOf(
+        "Alice", "Bob", "Charlie", "David", "Eve", "Frank", "Grace", "Alice", "Bob", "Charlie", "David", "Eve", "Frank", "Grace"
+        , "Alice", "Bob", "Charlie", "David", "Eve", "Frank", "Grace", "Alice", "Bob", "Charlie", "David", "Eve", "Frank", "Grace",
+        "Alice", "Bob", "Charlie", "David", "Eve", "Frank", "Grace", "Alice", "Bob", "Charlie", "David", "Eve", "Frank", "Grace"
+        , "Alice", "Bob", "Charlie", "David", "Eve", "Frank", "Grace", "Alice", "Bob", "Charlie", "David", "Eve", "Frank", "Grace",
+        "Alice", "Bob", "Charlie", "David", "Eve", "Frank", "Grace", "Alice", "Bob", "Charlie", "David", "Eve", "Frank", "Grace"
+        , "Alice", "Bob", "Charlie", "David", "Eve", "Frank", "Grace", "Alice", "Bob", "Charlie", "David", "Eve", "Frank", "Grace",
+        "Alice", "Bob", "Charlie", "David", "Eve", "Frank", "Grace", "Alice", "Bob", "Charlie", "David", "Eve", "Frank", "Grace"
+        , "Alice", "Bob", "Charlie", "David", "Eve", "Frank", "Grace", "Alice", "Bob", "Charlie", "David", "Eve", "Frank", "Grace",
+        "Alice", "Bob", "Charlie", "David", "Eve", "Frank", "Grace", "Alice", "Bob", "Charlie", "David", "Eve", "Frank", "Grace"
+        , "Alice", "Bob", "Charlie", "David", "Eve", "Frank", "Grace", "Alice", "Bob", "Charlie", "David", "Eve", "Frank", "Grace",
+        "Alice", "Bob", "Charlie", "David", "Eve", "Frank", "Grace", "Alice", "Bob", "Charlie", "David", "Eve", "Frank", "Grace"
+        , "Alice", "Bob", "Charlie", "David", "Eve", "Frank", "Grace", "Alice", "Bob", "Charlie", "David", "Eve", "Frank", "Grace",
+        "Alice", "Bob", "Charlie", "David", "Eve", "Frank", "Grace", "Alice", "Bob", "Charlie", "David", "Eve", "Frank", "Grace"
+        , "Alice", "Bob", "Charlie", "David", "Eve", "Frank", "Grace", "Alice", "Bob", "Charlie", "David", "Eve", "Frank", "Grace"
+    )
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+
+        val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)
+
+
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+
+
+        recyclerView.adapter = NameAdapter(names)
+        Log.d("BACKSTACK", "RecyclerViewFragment opened")
+    }
+
+
+}

@@ -12,8 +12,9 @@ class DigitcodeViewModel : BaseViewModel() {
             showmessage("missing")
         } else {
             showmessage("Submitted successfully")
-
+            navigate()
         }
+
     }
 
     fun cancel() {

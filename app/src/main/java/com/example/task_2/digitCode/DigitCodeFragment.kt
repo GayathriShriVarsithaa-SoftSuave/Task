@@ -1,8 +1,12 @@
 package com.example.task_2.digitCode
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.View
+import android.view.KeyEvent
+import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -17,7 +21,9 @@ class DigitCodeFragment : BaseFragment<FragmentDigitcodeBinding>(
     FragmentDigitcodeBinding::inflate
 ){
     private val viewModel: DigitcodeViewModel by viewModels()
+
     override fun setupViews() {
+        //setupPinInputs()
         binding.conformbtn.setOnClickListener{
             onClick(it.id)
         }
@@ -34,6 +40,15 @@ class DigitCodeFragment : BaseFragment<FragmentDigitcodeBinding>(
                 Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
             } else if (message.equals("Submitted successfully")) {
                 Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+
+            }
+        }
+        viewModel.navi.observe(viewLifecycleOwner) { shouldNavigate ->
+            if (shouldNavigate) {
+                //findNavController() .navigate(R.id.conform_to_recyclerfragment)
+                //findNavController().navigate(R.id.conform_to_linearlist)
+                findNavController().navigate(R.id.pin_to_ecomm)
+                viewModel.navigationdone()
             }
         }
     }
@@ -58,4 +73,46 @@ class DigitCodeFragment : BaseFragment<FragmentDigitcodeBinding>(
             }
         }
     }
+//    private fun setupPinInputs() {
+//        val pin1 = binding.pin1
+//        val pin2 = binding.pin2
+//        val pin3 = binding.pin3
+//        val pin4 = binding.pin4
+//
+//        moveNext(pin1, pin2)
+//        moveNext(pin2, pin3)
+//        moveNext(pin3, pin4)
+//
+//        moveBack(pin2, pin1)
+//        moveBack(pin3, pin2)
+//        moveBack(pin4, pin3)
+//    }
+//
+//    private fun moveNext(current: EditText, next: EditText) {
+//        current.addTextChangedListener(object : TextWatcher {
+//            override fun afterTextChanged(s: Editable?) {
+//                if (s?.length == 1) {
+//                    next.requestFocus()
+//                }
+//            }
+//
+//            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+//            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+//        })
+//    }
+//
+//    private fun moveBack(current: EditText, previous: EditText) {
+//        current.setOnKeyListener { _, keyCode, event ->
+//            if (keyCode == KeyEvent.KEYCODE_DEL &&
+//                event.action == KeyEvent.ACTION_DOWN &&
+//                current.text.isEmpty()
+//            ) {
+//                previous.requestFocus()
+//                previous.setSelection(previous.text.length)
+//                true
+//            } else {
+//                false
+//            }
+//        }
+//    }
 }
