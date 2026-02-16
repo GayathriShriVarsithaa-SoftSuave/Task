@@ -10,10 +10,10 @@
         android:name="com.example.task_2.welcome.WelcomeFragment">
         <action
             android:id="@+id/welcome_to_signin"
-            app:destination="@id/SignInFragment"/>
+            app:destination="@id/SignInFragment" />
         <action
             android:id="@+id/welcome_to_signup"
-            app:destination="@id/SignUpFragment"/>
+            app:destination="@id/SignUpFragment" />
 
     </fragment>
 
@@ -22,7 +22,7 @@
         android:name="com.example.task_2.signup.SignUpFragment">
         <action
             android:id="@+id/back_to_welcome_from_signup"
-            app:destination="@id/WelcomeFragment"/>
+            app:destination="@id/WelcomeFragment" />
     </fragment>
 
     <fragment
@@ -30,10 +30,10 @@
         android:name="com.example.task_2.sign_in.SignInFragment">
         <action
             android:id="@+id/back_to_welcome_from_signin"
-            app:destination="@id/WelcomeFragment"/>
+            app:destination="@id/WelcomeFragment" />
         <action
             android:id="@+id/signin_to_forgotpassword"
-            app:destination="@id/ForgotpasswordFragment"/>
+            app:destination="@id/ForgotpasswordFragment" />
     </fragment>
 
     <fragment
@@ -41,10 +41,10 @@
         android:name="com.example.task_2.forgot_password.ForgotPasswordFragment">
         <action
             android:id="@+id/back_from_forgot"
-            app:destination="@id/SignInFragment"/>
+            app:destination="@id/SignInFragment" />
         <action
             android:id="@+id/forgotpassword_to_pin"
-            app:destination="@id/DigitcodeFragment"/>
+            app:destination="@id/DigitcodeFragment" />
     </fragment>
 
     <fragment
@@ -52,19 +52,19 @@
         android:name="com.example.task_2.digitCode.DigitCodeFragment">
         <action
             android:id="@+id/conform_to_recyclerfragment"
-            app:destination="@id/RecyclerViewFragment"/>
+            app:destination="@id/RecyclerViewFragment" />
         <action
             android:id="@+id/conform_to_linearlist"
-            app:destination="@id/LinearListFragment"/>
+            app:destination="@id/LinearListFragment" />
         <action
             android:id="@+id/pin_to_welcome"
-            app:destination="@id/WelcomeFragment"/>
+            app:destination="@id/WelcomeFragment" />
         <action
             android:id="@+id/pin_to_api_action"
-            app:destination="@id/RestApiDemoFragment"/>
+            app:destination="@id/RestApiDemoFragment" />
         <action
             android:id="@+id/pin_to_ecomm"
-            app:destination="@id/EcommerceFragment"/>
+            app:destination="@id/EcommerceFragment" />
     </fragment>
     <fragment
         android:id="@+id/RestApiDemoFragment"
@@ -78,11 +78,15 @@
     <fragment
         android:id="@+id/LinearListFragment"
         android:name="com.example.task_2.Linear.LinearListFragment" />
-<fragment
-    android:id="@+id/EcommerceFragment"
-    android:name="com.example.task_2.adapter.EcommerceFragment">
+    <fragment
+        android:id="@+id/EcommerceFragment"
+        android:name="com.example.task_2.adapter.EcommerceFragment">
 
-</fragment>
+    </fragment>
+    <fragment
+        android:id="@+id/productDetailFragment"
+        android:name="com.example.task_2.ecommerce.ProductDetailFragment"
+        android:label="Product Detail" />
 
 
 </navigation>
