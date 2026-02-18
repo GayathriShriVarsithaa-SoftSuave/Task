@@ -1,4 +1,4 @@
-package com.example.task_2.Linear
+package com.example.task_2.linear
 
 import android.os.Bundle
 import android.view.View
@@ -38,9 +38,10 @@ class LinearListFragment : Fragment(R.layout.fragment_linear_list) {
         for (name in names) {
             val itemView = layoutInflater.inflate(R.layout.item_name, container, false)
             val textView = itemView.findViewById<TextView>(R.id.textViewName)
-            val imageView=itemView.findViewById<ImageView>(R.id.imageviewname)
+            val imageView = itemView.findViewById<ImageView>(R.id.imageviewname)
             textView.text = name
-            Glide.with(imageView.context).load("https://cdn.dummyjson.com/product-images/beauty/essence-mascara-lash-princess/thumbnail.webp")
+            Glide.with(imageView.context)
+                .load("https://cdn.dummyjson.com/product-images/beauty/essence-mascara-lash-princess/thumbnail.webp")
                 .into(imageView)
             container.addView(itemView)
         }

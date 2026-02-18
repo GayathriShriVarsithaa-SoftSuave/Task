@@ -2,7 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/EcommerceFragment">
+    app:startDestination="@id/WelcomeFragment">
 
 
     <fragment
@@ -14,6 +14,9 @@
         <action
             android:id="@+id/welcome_to_signup"
             app:destination="@id/SignUpFragment" />
+        <action
+            android:id="@+id/welcome_to_Ecommerce"
+            app:destination="@id/EcommerceFragment" />
 
     </fragment>
 
@@ -23,6 +26,9 @@
         <action
             android:id="@+id/back_to_welcome_from_signup"
             app:destination="@id/WelcomeFragment" />
+        <action
+            android:id="@+id/signupToEcommerce"
+            app:destination="@id/EcommerceFragment" />
     </fragment>
 
     <fragment
@@ -34,6 +40,9 @@
         <action
             android:id="@+id/signin_to_forgotpassword"
             app:destination="@id/ForgotpasswordFragment" />
+        <action
+            android:id="@+id/signinToEcommerce"
+            app:destination="@id/EcommerceFragment" />
     </fragment>
 
     <fragment
@@ -77,16 +86,25 @@
     </fragment>
     <fragment
         android:id="@+id/LinearListFragment"
-        android:name="com.example.task_2.Linear.LinearListFragment" />
+        android:name="com.example.task_2.linear.LinearListFragment" />
     <fragment
         android:id="@+id/EcommerceFragment"
-        android:name="com.example.task_2.adapter.EcommerceFragment">
-
+        android:name="com.example.task_2.ecommerce.EcommerceFragment">
+        <action
+            android:id="@+id/logged_out_to_Welcome"
+            app:destination="@id/WelcomeFragment" />
+        <action
+            android:id="@+id/ecommerce_to_Welcome"
+            app:destination="@id/WelcomeFragment"/>
     </fragment>
     <fragment
         android:id="@+id/productDetailFragment"
         android:name="com.example.task_2.ecommerce.ProductDetailFragment"
-        android:label="Product Detail" />
+        android:label="Product Detail">
+        <action
+            android:id="@+id/logged_out_To_Welcome"
+            app:destination="@id/WelcomeFragment" />
+    </fragment>
 
 
 </navigation>

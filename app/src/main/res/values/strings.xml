@@ -31,4 +31,7 @@
     <string name="enter_your_email">Enter your Email</string>
     <string name="agree_the_terms_of_use_and_privacy_policy">Agree the terms of use and privacy policy</string>
     <string name="enter_your_password_">Enter your Password</string>
+    <string name="buy">Buy</string>
+    <string name="image_of_the_product">Image of the product</string>
+    <string name="logout">Logout</string>
 </resources>

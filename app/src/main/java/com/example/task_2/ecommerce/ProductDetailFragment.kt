@@ -6,13 +6,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.task_2.R
-import android.widget.TextView
+//import com.example.task_2.R
+//import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import kotlinx.coroutines.launch
-import android.widget.ImageView
+//import android.widget.ImageView
 import com.example.task_2.databinding.FragmentProductDetailBinding
 
 class ProductDetailFragment : Fragment() {
@@ -28,6 +28,7 @@ class ProductDetailFragment : Fragment() {
         _binding = FragmentProductDetailBinding.inflate(inflater, container, false)
         return binding.root
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -39,6 +40,7 @@ class ProductDetailFragment : Fragment() {
     private fun fetchProductDetails(id: Int, view: View) {
         lifecycleScope.launch {
             try {
+                binding.progressDetailProgress.visibility = View.VISIBLE
                 val product = RetrofitInstance.api.getProductById(id)
 
                 binding.textViewTitle.text = product.title
@@ -56,13 +58,15 @@ class ProductDetailFragment : Fragment() {
 
             } catch (e: Exception) {
                 Toast.makeText(requireContext(), "Error ${e.message}", Toast.LENGTH_SHORT).show()
+            } finally {
+                binding.progressDetailProgress.visibility = View.GONE
             }
         }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-        _binding=null
+        _binding = null
     }
 }
 

@@ -15,10 +15,10 @@ class ForgotPasswordActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.forgot_password)
-        val cnt=findViewById<Button>(R.id.continuebtn)
-        val bck=findViewById<TextView>(R.id.back2)
-        val mailbox=findViewById<EditText>(R.id.email__box)
-        cnt.setOnClickListener{
+        val cnt = findViewById<Button>(R.id.continuebtn)
+        val bck = findViewById<TextView>(R.id.back2)
+        val mailbox = findViewById<EditText>(R.id.email__box)
+        cnt.setOnClickListener {
             val mail = mailbox.text.toString().trim()
 
             if (mail.isEmpty()) {
@@ -29,11 +29,11 @@ class ForgotPasswordActivity : AppCompatActivity() {
                 val intent = Intent(this, DigitcodeActivity::class.java)
                 startActivity(intent)
             }
-                val intent = Intent(this, DigitcodeActivity::class.java)
-                startActivity(intent)
+            val intent = Intent(this, DigitcodeActivity::class.java)
+            startActivity(intent)
         }
-        bck.setOnClickListener{
-            val intent= Intent(this, SignInActivity::class.java)
+        bck.setOnClickListener {
+            val intent = Intent(this, SignInActivity::class.java)
             startActivity(intent)
         }
     }

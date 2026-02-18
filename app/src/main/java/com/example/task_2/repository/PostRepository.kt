@@ -27,13 +27,13 @@ class PostRepository(
         }
     }
 
-    suspend fun createPost(post: Post){
+    suspend fun createPost(post: Post) {
         val postRequest = PostRequest(
             userId = post.userId,
             title = post.title,
             body = post.body
         )
-        if(NetworkUtils.isInternetAvailable(context)){
+        if (NetworkUtils.isInternetAvailable(context)) {
             apiService.createPost(postRequest)
         }
         postDao.insertPosts(listOf(post))

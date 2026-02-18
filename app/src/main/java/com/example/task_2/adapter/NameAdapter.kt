@@ -7,7 +7,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.task_2.R
 
-class NameAdapter(private val nameList: List<String>) : RecyclerView.Adapter<NameAdapter.NameViewHolder>() {
+class NameAdapter(private val nameList: List<String>) :
+    RecyclerView.Adapter<NameAdapter.NameViewHolder>() {
 
     inner class NameViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val textViewName: TextView = itemView.findViewById(R.id.textViewName)

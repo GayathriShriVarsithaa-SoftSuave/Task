@@ -21,6 +21,7 @@ class RestApiDemoFragment : Fragment(R.layout.fragment_rest_api_demo) {
     private val viewModel: PostViewModel by viewModels {
         PostViewModelFactory(requireContext())
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -39,23 +40,23 @@ class RestApiDemoFragment : Fragment(R.layout.fragment_rest_api_demo) {
         }
 
         btnPost.setOnClickListener {
-            val newPost=Post(
+            val newPost = Post(
                 id = System.currentTimeMillis().toInt(),
-                title = "Sample Post Title" ,
+                title = "Sample Post Title",
                 body = "This post is created from the app",
                 userId = 1
             )
             viewModel.createPost(newPost)
-            tvResult.text="Post submitted successfully"
+            tvResult.text = "Post submitted successfully"
         }
         btnGet.setOnClickListener {
-            Log.d("CLICK","GET clicked")
+            Log.d("CLICK", "GET clicked")
             viewModel.fetchPosts()
         }
     }
 
     override fun onResume() {
         super.onResume()
-        Log.d("FRAGMENT","RestApiDemoFragment resumed")
+        Log.d("FRAGMENT", "RestApiDemoFragment resumed")
     }
 }
