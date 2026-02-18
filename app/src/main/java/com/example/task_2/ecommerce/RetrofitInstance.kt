@@ -1,6 +1,6 @@
 package com.example.task_2.ecommerce
 
-import com.google.gson.Gson
+//import com.google.gson.Gson
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
