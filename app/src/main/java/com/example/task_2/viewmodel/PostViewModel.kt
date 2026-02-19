@@ -22,7 +22,8 @@ class PostViewModel(
             _posts.postValue(result)
         }
     }
-    fun createPost(post: Post){
+
+    fun createPost(post: Post) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.createPost(post)
         }

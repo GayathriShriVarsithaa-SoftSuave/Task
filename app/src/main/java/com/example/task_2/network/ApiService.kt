@@ -13,7 +13,7 @@ interface ApiService {
     suspend fun getPosts(): Response<List<Post>>
 
     @POST("posts")
-    suspend fun  createPost(
+    suspend fun createPost(
         @Body postRequest: PostRequest
     ): Response<PostResponse>
 }
