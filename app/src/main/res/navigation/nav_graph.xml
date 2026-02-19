@@ -91,6 +91,9 @@
         android:id="@+id/EcommerceFragment"
         android:name="com.example.task_2.ecommerce.EcommerceFragment">
         <action
+            android:id="@+id/action_ecommerce_to_productDetail"
+            app:destination="@id/productDetailFragment"/>
+        <action
             android:id="@+id/logged_out_to_Welcome"
             app:destination="@id/WelcomeFragment" />
         <action
@@ -101,6 +104,9 @@
         android:id="@+id/productDetailFragment"
         android:name="com.example.task_2.ecommerce.ProductDetailFragment"
         android:label="Product Detail">
+        <argument
+            android:name="productId"
+            app:argType="integer"/>
         <action
             android:id="@+id/logged_out_To_Welcome"
             app:destination="@id/WelcomeFragment" />

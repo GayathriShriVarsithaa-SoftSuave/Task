@@ -19,6 +19,7 @@ class ProductDetailViewModel : BaseViewModel() {
         _loading.value = true
         viewModelScope.launch {
             try {
+
                 val response = RetrofitInstance.api.getProductById(productId)
                 _product.value = response
             } catch (e: Exception) {

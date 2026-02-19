@@ -13,6 +13,7 @@ import android.widget.Toast
 import androidx.fragment.app.viewModels
 //import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.example.task_2.R
 import com.example.task_2.SessionManager
@@ -28,16 +29,20 @@ class ProductDetailFragment :
 
 
     override fun setupViews() {
-
+        binding.logOutButton.setOnClickListener {
+            val sessionManager = SessionManager(requireContext())
+            sessionManager.logout()
+            findNavController().navigate(R.id.logged_out_To_Welcome)
+        }
     }
 
     override fun observeViewModel() {
         viewModel.product.observe(viewLifecycleOwner) { product ->
             binding.textViewTitle.text = product.title
             binding.textViewDescription.text = product.description
-            binding.logOutButton.setOnClickListener {
-                onClick(it.id)
-            }
+//            binding.logOutButton.setOnClickListener {
+//                onClick(it.id)
+//            }
             binding.textViewOriginalPrice.text = "$${product.originalprice}"
             binding.textViewOriginalPrice.paintFlags =
                 binding.textViewOriginalPrice.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
@@ -60,26 +65,28 @@ class ProductDetailFragment :
         viewModel.error.observe(viewLifecycleOwner) { message ->
             Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
         }
-        viewModel.logout.observe(viewLifecycleOwner) {
-            val sessionManager = SessionManager(requireContext())
-            sessionManager.logout()
-            viewModel.logoutend()
-            findNavController().navigate(R.id.logged_out_To_Welcome)
-        }
+//        viewModel.logout.observe(viewLifecycleOwner) {
+//            val sessionManager = SessionManager(requireContext())
+//            sessionManager.logout()
+//            viewModel.logoutend()
+//            findNavController().navigate(R.id.logged_out_To_Welcome)
+//        }
     }
 
     override fun onClick(viewId: Int) {
-        when (viewId) {
-            R.id.logOutButton -> {
-                viewModel.logout()
-            }
-        }
+//        when (viewId) {
+//            R.id.logOutButton -> {
+//                viewModel.logout()
+//            }
+//        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val productId = arguments?.getInt("PRODUCT_ID") ?: return
-        viewModel.fetchProduct(productId)
+        val args:ProductDetailFragmentArgs by navArgs()
+        val id=args.productId
+        //val productId = arguments?.getInt("PRODUCT_ID") ?: return
+        viewModel.fetchProduct(id)
     }
 }
 

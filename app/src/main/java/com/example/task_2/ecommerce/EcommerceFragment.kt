@@ -26,6 +26,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.task_2.SessionManager
 import com.example.task_2.base.BaseFragment
 import com.example.task_2.databinding.FragmentEcommerceBinding
+import com.example.task_2.ecommerce.EcommerceFragmentDirections
 
 //import com.example.task_2.ecommerce.ProductAdapter
 //import com.example.task_2.ecommerce.ProductModel
@@ -84,12 +85,17 @@ class EcommerceFragment :
     }
 
     private fun openDetailFragment(productId: Int) {
-        val bundle = Bundle()
-        bundle.putInt("PRODUCT_ID", productId)
-
-        findNavController().navigate(
-            R.id.productDetailFragment,
-            bundle
-        )
+//        val bundle = Bundle()
+//        bundle.putInt("PRODUCT_ID", productId)
+//
+//        findNavController().navigate(
+//            R.id.productDetailFragment,
+//            bundle
+//        )
+        val action=EcommerceFragmentDirections
+            .actionEcommerceToProductDetail(
+                productId=productId
+            )
+        findNavController().navigate(action)
     }
 }
