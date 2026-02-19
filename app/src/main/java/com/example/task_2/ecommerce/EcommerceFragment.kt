@@ -1,6 +1,6 @@
 package com.example.task_2.ecommerce
 
-import android.os.Bundle
+//import android.os.Bundle
 //import android.view.LayoutInflater
 //import android.util.Log
 import android.view.View
@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.Toast
 //import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavOptions
 //import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 //import androidx.recyclerview.widget.RecyclerView
@@ -26,7 +27,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.task_2.SessionManager
 import com.example.task_2.base.BaseFragment
 import com.example.task_2.databinding.FragmentEcommerceBinding
-import com.example.task_2.ecommerce.EcommerceFragmentDirections
+//import com.example.task_2.ecommerce.EcommerceFragmentDirections
 
 //import com.example.task_2.ecommerce.ProductAdapter
 //import com.example.task_2.ecommerce.ProductModel
@@ -70,7 +71,10 @@ class EcommerceFragment :
             if (shouldlogout) {
                 val sessionManager = SessionManager(requireContext())
                 sessionManager.logout()
-                findNavController().navigate(R.id.ecommerce_to_Welcome)
+                findNavController().navigate(R.id.ecommerce_to_Welcome
+                ,null,NavOptions.Builder()
+                        .setPopUpTo(R.id.WelcomeFragment,false)
+                        .build())
                 viewModel.logoutend()
             }
         }

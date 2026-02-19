@@ -11,6 +11,7 @@ import android.view.View
 //import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavOptions
 //import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -32,7 +33,9 @@ class ProductDetailFragment :
         binding.logOutButton.setOnClickListener {
             val sessionManager = SessionManager(requireContext())
             sessionManager.logout()
-            findNavController().navigate(R.id.logged_out_To_Welcome)
+            findNavController().navigate(R.id.logged_out_To_Welcome,null,NavOptions.Builder()
+                .setPopUpTo(R.id.WelcomeFragment,false)
+                .build())
         }
     }
 
@@ -44,8 +47,7 @@ class ProductDetailFragment :
 //                onClick(it.id)
 //            }
             binding.textViewOriginalPrice.text = "$${product.originalprice}"
-            binding.textViewOriginalPrice.paintFlags =
-                binding.textViewOriginalPrice.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+            binding.textViewOriginalPrice.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
 
             binding.textViewDiscountPrice.text = "$${product.discountprice}"
 
